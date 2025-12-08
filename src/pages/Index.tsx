@@ -5,12 +5,14 @@ import HeroSection from "@/components/HeroSection";
 import CategoryFilter from "@/components/CategoryFilter";
 import CarCard from "@/components/CarCard";
 import AboutSection from "@/components/AboutSection";
+import FilterPanel, { FilterState, defaultFilters } from "@/components/FilterPanel";
 import { carsData, CarStatus } from "@/data/cars";
-import { toast } from "sonner";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<CarStatus | "all">("all");
+  const [filterPanelOpen, setFilterPanelOpen] = useState(false);
+  const [filters, setFilters] = useState<FilterState>(defaultFilters);
 
   const filteredCars = useMemo(() => {
     return carsData.filter((car) => {
@@ -21,14 +23,27 @@ const Index = () => {
 
       const matchesCategory = activeCategory === "all" || car.status === activeCategory;
 
-      return matchesSearch && matchesCategory;
+      // Advanced filters
+      const matchesYearMin = filters.yearMin === null || car.year >= filters.yearMin;
+      const matchesYearMax = filters.yearMax === null || car.year <= filters.yearMax;
+      const matchesFuelType = filters.fuelType === null || car.fuelType === filters.fuelType;
+      const matchesColor = filters.color === null || car.color === filters.color;
+      const matchesPrice = car.price >= filters.priceMin && car.price <= filters.priceMax;
+
+      return (
+        matchesSearch &&
+        matchesCategory &&
+        matchesYearMin &&
+        matchesYearMax &&
+        matchesFuelType &&
+        matchesColor &&
+        matchesPrice
+      );
     });
-  }, [searchQuery, activeCategory]);
+  }, [searchQuery, activeCategory, filters]);
 
   const handleFilterClick = () => {
-    toast.info("Advanced filters coming soon!", {
-      description: "Filter by year, fuel type, colour and more.",
-    });
+    setFilterPanelOpen(true);
   };
 
   return (
@@ -94,6 +109,13 @@ const Index = () => {
       </main>
 
       <Footer />
+
+      <FilterPanel
+        open={filterPanelOpen}
+        onOpenChange={setFilterPanelOpen}
+        filters={filters}
+        onFiltersChange={setFilters}
+      />
     </div>
   );
 };
