@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Car } from "@/components/icons/Car";
+import logo from "@/assets/logo.png";
 
 const Header = () => {
   return (
@@ -7,12 +7,7 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-gold">
-              <Car className="h-5 w-5 text-primary-foreground" />
-            </div>
-            <span className="text-xl font-bold text-foreground">
-              Dom <span className="text-gradient-gold">Car Store</span>
-            </span>
+            <img src={logo} alt="Car Plus Logo" className="h-12 w-auto" />
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
