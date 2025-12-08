@@ -14,10 +14,7 @@ export default {
   	},
   	extend: {
   		fontFamily: {
-  			outfit: [
-  				'Outfit',
-  				'sans-serif'
-  			]
+  			sans: ['Inter', 'sans-serif']
   		},
   		colors: {
   			border: 'hsl(var(--border))',
@@ -53,14 +50,14 @@ export default {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
   			},
-  			gold: {
-  				DEFAULT: 'hsl(var(--gold))',
-  				light: 'hsl(var(--gold-light))',
-  				dark: 'hsl(var(--gold-dark))'
+  			ocean: {
+  				DEFAULT: 'hsl(var(--ocean))',
+  				light: 'hsl(var(--ocean-light))',
+  				dark: 'hsl(var(--ocean-dark))'
   			},
-  			midnight: {
-  				DEFAULT: 'hsl(var(--midnight))',
-  				light: 'hsl(var(--midnight-light))'
+  			teal: {
+  				DEFAULT: 'hsl(var(--teal))',
+  				light: 'hsl(var(--teal-light))'
   			},
   			surface: {
   				DEFAULT: 'hsl(var(--surface))',
