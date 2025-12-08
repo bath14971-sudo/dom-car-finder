@@ -25,14 +25,14 @@ const features = [
 
 const AboutSection = () => {
   return (
-    <section id="about" className="py-24 bg-gradient-dark">
+    <section id="about" className="py-24 bg-gradient-light">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            About <span className="text-gradient-gold">Dom Car Store</span>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-bordered">
+            About <span className="text-gradient-ocean">Car Plus</span>
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            At Dom Car Store, we specialise in sourcing reliable cars from trusted suppliers. 
+            At Car Plus, we specialise in sourcing reliable cars from trusted suppliers. 
             Our mission is to provide high-quality vehicles with transparent histories, warranties, 
             and excellent customer service. Located in Phnom Penh, we offer flexible financing 
             and a friendly team ready to assist you.
@@ -43,13 +43,13 @@ const AboutSection = () => {
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className="group p-6 rounded-xl bg-gradient-card border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-glow"
+              className="group p-6 rounded-xl bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 mb-4 group-hover:bg-primary/20 transition-colors">
                 <feature.icon className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="text-lg font-semibold mb-2 text-foreground">{feature.title}</h3>
+              <h3 className="text-lg font-semibold mb-2 text-foreground text-bordered-light">{feature.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
             </div>
           ))}

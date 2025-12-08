@@ -27,9 +27,9 @@ const HeroSection = ({ searchQuery, onSearchChange, onFilterClick }: HeroSection
       <div className="relative z-10 container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center space-y-8 animate-fade-in">
           <div className="space-y-4">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-bordered">
               Welcome to{" "}
-              <span className="text-gradient-gold">Dom Car Store</span>
+              <span className="text-gradient-ocean">Car Plus</span>
             </h1>
             <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Your trusted source for quality vehicles in Phnom Penh. Browse our curated collection of reliable daily drivers and luxury rides.
@@ -45,7 +45,7 @@ const HeroSection = ({ searchQuery, onSearchChange, onFilterClick }: HeroSection
                 placeholder="Search by name or model..."
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
-                className="pl-12 h-14"
+                className="pl-12 h-14 border-2"
               />
             </div>
             <Button
@@ -62,15 +62,15 @@ const HeroSection = ({ searchQuery, onSearchChange, onFilterClick }: HeroSection
           {/* Stats */}
           <div className="flex justify-center gap-12 pt-8">
             <div className="text-center">
-              <p className="text-3xl font-bold text-gradient-gold">50+</p>
+              <p className="text-3xl font-bold text-gradient-ocean text-bordered-primary">50+</p>
               <p className="text-sm text-muted-foreground">Vehicles</p>
             </div>
             <div className="text-center">
-              <p className="text-3xl font-bold text-gradient-gold">500+</p>
+              <p className="text-3xl font-bold text-gradient-ocean text-bordered-primary">500+</p>
               <p className="text-sm text-muted-foreground">Happy Customers</p>
             </div>
             <div className="text-center">
-              <p className="text-3xl font-bold text-gradient-gold">5+</p>
+              <p className="text-3xl font-bold text-gradient-ocean text-bordered-primary">5+</p>
               <p className="text-sm text-muted-foreground">Years Experience</p>
             </div>
           </div>
@@ -79,7 +79,7 @@ const HeroSection = ({ searchQuery, onSearchChange, onFilterClick }: HeroSection
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-2">
+        <div className="w-6 h-10 rounded-full border-2 border-primary/50 flex items-start justify-center p-2">
           <div className="w-1 h-2 rounded-full bg-primary" />
         </div>
       </div>

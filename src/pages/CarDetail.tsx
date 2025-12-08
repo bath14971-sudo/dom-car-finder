@@ -94,7 +94,7 @@ const CarDetail = () => {
                 <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
                   {car.name}
                 </h1>
-                <p className="text-4xl font-bold text-gradient-gold">
+                <p className="text-4xl font-bold text-gradient-ocean">
                   ${car.price.toLocaleString()}
                 </p>
               </div>
@@ -144,7 +144,7 @@ const CarDetail = () => {
                     Interested in this vehicle? Contact us to schedule a test drive or get more information.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3">
-                    <Button variant="gold" className="flex-1 gap-2" asChild>
+                    <Button variant="ocean" className="flex-1 gap-2" asChild>
                       <a href="tel:+85512345678">
                         <Phone className="h-4 w-4" />
                         Call Now

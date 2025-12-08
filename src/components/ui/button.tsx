@@ -11,13 +11,13 @@ const buttonVariants = cva(
       variant: {
         default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-button hover:shadow-lg",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-border bg-transparent hover:bg-surface-hover hover:border-primary/50",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        outline: "border-2 border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border",
         ghost: "hover:bg-surface-hover hover:text-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        gold: "bg-gradient-gold text-primary-foreground font-semibold shadow-button hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]",
-        hero: "bg-gradient-gold text-primary-foreground font-semibold text-base px-8 py-6 shadow-button hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]",
-        category: "bg-surface text-foreground border border-border hover:border-primary/50 hover:bg-surface-hover data-[active=true]:bg-primary data-[active=true]:text-primary-foreground",
+        ocean: "bg-gradient-ocean text-primary-foreground font-semibold shadow-button hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]",
+        hero: "bg-gradient-ocean text-primary-foreground font-semibold text-base px-8 py-6 shadow-button hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]",
+        category: "bg-surface text-foreground border-2 border-border hover:border-primary hover:bg-surface-hover data-[active=true]:bg-primary data-[active=true]:text-primary-foreground data-[active=true]:border-primary",
       },
       size: {
         default: "h-10 px-4 py-2",
