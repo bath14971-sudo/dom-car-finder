@@ -2,7 +2,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, SlidersHorizontal, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
-import heroBg from "@/assets/hero-bg.jpg";
+import slide1Bg from "@/assets/slides/slide-1-showroom.jpg";
+import slide2Bg from "@/assets/slides/slide-2-premium.jpg";
+import slide3Bg from "@/assets/slides/slide-3-financing.jpg";
+import slide4Bg from "@/assets/slides/slide-4-service.jpg";
 import {
   Carousel,
   CarouselContent,
@@ -21,6 +24,7 @@ const slides = [
     title: "Welcome to",
     highlight: "Car Plus",
     description: "Your trusted source for quality vehicles in Phnom Penh. Browse our curated collection of reliable daily drivers and luxury rides.",
+    image: slide1Bg,
     stats: [
       { value: "50+", label: "Vehicles" },
       { value: "500+", label: "Happy Customers" },
@@ -31,6 +35,7 @@ const slides = [
     title: "Premium",
     highlight: "Selection",
     description: "Discover our handpicked collection of luxury and performance vehicles. Every car undergoes rigorous quality inspection.",
+    image: slide2Bg,
     stats: [
       { value: "100%", label: "Quality Checked" },
       { value: "24/7", label: "Support" },
@@ -41,6 +46,7 @@ const slides = [
     title: "Easy",
     highlight: "Financing",
     description: "Flexible payment options and competitive financing rates. Get behind the wheel of your dream car today.",
+    image: slide3Bg,
     stats: [
       { value: "0%", label: "Down Payment" },
       { value: "Fast", label: "Approval" },
@@ -51,6 +57,7 @@ const slides = [
     title: "Trusted",
     highlight: "Service",
     description: "From purchase to maintenance, we're with you every step. Experience exceptional after-sales support.",
+    image: slide4Bg,
     stats: [
       { value: "Free", label: "Warranty" },
       { value: "Expert", label: "Technicians" },
@@ -90,12 +97,19 @@ const HeroSection = ({
 
   return (
     <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <img src={heroBg} alt="Luxury car showroom" className="h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-transparent to-background/70" />
-      </div>
+      {/* Background Images - all slides preloaded, visibility controlled */}
+      {slides.map((slide, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 transition-opacity duration-700 ${
+            current === index ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <img src={slide.image} alt={`${slide.highlight} background`} className="h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-transparent to-background/70" />
+        </div>
+      ))}
 
       {/* Carousel Content */}
       <div className="relative z-10 container mx-auto px-4">
