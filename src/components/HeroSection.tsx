@@ -2,24 +2,21 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, SlidersHorizontal } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
-
 interface HeroSectionProps {
   searchQuery: string;
   onSearchChange: (value: string) => void;
   onFilterClick: () => void;
 }
-
-const HeroSection = ({ searchQuery, onSearchChange, onFilterClick }: HeroSectionProps) => {
-  return (
-    <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+const HeroSection = ({
+  searchQuery,
+  onSearchChange,
+  onFilterClick
+}: HeroSectionProps) => {
+  return <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
-        <img
-          src={heroBg}
-          alt="Luxury car showroom"
-          className="h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
+        <img src={heroBg} alt="Luxury car showroom" className="h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background text-[sidebar-accent-foreground] text-black" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-transparent to-background/70" />
       </div>
 
@@ -40,20 +37,9 @@ const HeroSection = ({ searchQuery, onSearchChange, onFilterClick }: HeroSection
           <div className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
             <div className="relative flex-1">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder="Search by name or model..."
-                value={searchQuery}
-                onChange={(e) => onSearchChange(e.target.value)}
-                className="pl-12 h-14 border-2"
-              />
+              <Input type="text" placeholder="Search by name or model..." value={searchQuery} onChange={e => onSearchChange(e.target.value)} className="pl-12 h-14 border-2" />
             </div>
-            <Button
-              variant="outline"
-              size="lg"
-              className="h-14 px-6 gap-2"
-              onClick={onFilterClick}
-            >
+            <Button variant="outline" size="lg" className="h-14 px-6 gap-2" onClick={onFilterClick}>
               <SlidersHorizontal className="h-5 w-5" />
               Filter
             </Button>
@@ -83,8 +69,6 @@ const HeroSection = ({ searchQuery, onSearchChange, onFilterClick }: HeroSection
           <div className="w-1 h-2 rounded-full bg-primary" />
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
