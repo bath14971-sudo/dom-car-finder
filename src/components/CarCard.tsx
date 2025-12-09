@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Car, getStatusLabel, CarStatus } from "@/data/cars";
-import { Eye } from "lucide-react";
+import { Eye, ShoppingCart } from "lucide-react";
+import { useCart } from "@/hooks/useCart";
 
 interface CarCardProps {
   car: Car;
@@ -13,6 +15,15 @@ const getStatusVariant = (status: CarStatus): "ready" | "onroad" | "luxury" | "p
 };
 
 const CarCard = ({ car }: CarCardProps) => {
+  const { addToCart, items } = useCart();
+  const isInCart = items.some((item) => item.car_id === car.id);
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart(car.id);
+  };
+
   return (
     <Link to={`/car/${car.id}`}>
       <Card className="group overflow-hidden cursor-pointer border-2 hover:border-primary/50 transition-all duration-300">
@@ -26,6 +37,15 @@ const CarCard = ({ car }: CarCardProps) => {
           <Badge variant={getStatusVariant(car.status)} className="absolute top-4 left-4 border-2">
             {getStatusLabel(car.status)}
           </Badge>
+          <Button
+            size="icon"
+            variant={isInCart ? "default" : "secondary"}
+            className="absolute top-4 right-4 h-9 w-9 opacity-0 group-hover:opacity-100 transition-opacity"
+            onClick={handleAddToCart}
+            disabled={isInCart}
+          >
+            <ShoppingCart className="h-4 w-4" />
+          </Button>
         </div>
         <CardContent className="p-5">
           <div className="space-y-3">
