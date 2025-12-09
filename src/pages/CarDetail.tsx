@@ -5,13 +5,17 @@ import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, Phone, MessageCircle, Check, Calendar, Fuel, Palette, Shield, Car as CarIcon } from "lucide-react";
+import { ArrowLeft, Phone, MessageCircle, Check, Calendar, Fuel, Palette, Shield, Car as CarIcon, ShoppingCart } from "lucide-react";
 import { useState } from "react";
+import { useCart } from "@/hooks/useCart";
 
 const CarDetail = () => {
   const { id } = useParams<{ id: string }>();
   const car = getCarById(id || "");
   const [selectedImage, setSelectedImage] = useState(0);
+  const { addToCart, items } = useCart();
+
+  const isInCart = items.some((item) => item.car_id === id);
 
   if (!car) {
     return (
@@ -99,6 +103,29 @@ const CarDetail = () => {
                 </p>
               </div>
 
+              {/* Buy Now & Add to Cart */}
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button 
+                  size="lg" 
+                  className="flex-1 gap-2"
+                  onClick={() => addToCart(car.id)}
+                  disabled={isInCart}
+                >
+                  <ShoppingCart className="h-5 w-5" />
+                  {isInCart ? "In Cart" : "Add to Cart"}
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="ocean" 
+                  className="flex-1 gap-2"
+                  asChild
+                >
+                  <Link to={isInCart ? "/checkout" : "#"} onClick={() => !isInCart && addToCart(car.id)}>
+                    Buy Now
+                  </Link>
+                </Button>
+              </div>
+
               {/* Description */}
               <Card>
                 <CardContent className="p-6">
@@ -144,7 +171,7 @@ const CarDetail = () => {
                     Interested in this vehicle? Contact us to schedule a test drive or get more information.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3">
-                    <Button variant="ocean" className="flex-1 gap-2" asChild>
+                    <Button variant="outline" className="flex-1 gap-2" asChild>
                       <a href="tel:+85512345678">
                         <Phone className="h-4 w-4" />
                         Call Now

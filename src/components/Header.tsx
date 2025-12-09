@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
+import CartSheet from "@/components/CartSheet";
+import UserMenu from "@/components/UserMenu";
 
 const Header = () => {
   return (
@@ -25,7 +27,9 @@ const Header = () => {
             </Link>
           </nav>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
+            <CartSheet />
+            <UserMenu />
             <a 
               target="_blank" 
               rel="noopener noreferrer" 
