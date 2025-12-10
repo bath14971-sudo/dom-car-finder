@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
+import { Heart } from "lucide-react";
 import logo from "@/assets/logo.png";
 import CartSheet from "@/components/CartSheet";
 import UserMenu from "@/components/UserMenu";
+import { useWishlist } from "@/hooks/useWishlist";
+import { Button } from "@/components/ui/button";
 
 const Header = () => {
+  const { items } = useWishlist();
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b-2 border-border bg-background/95 backdrop-blur-xl">
       <div className="container mx-auto px-4">
@@ -28,6 +32,16 @@ const Header = () => {
           </nav>
 
           <div className="flex items-center gap-3">
+            <Button variant="ghost" size="icon" className="relative" asChild>
+              <Link to="/wishlist">
+                <Heart className="h-5 w-5" />
+                {items.length > 0 && (
+                  <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary text-[10px] font-medium text-primary-foreground flex items-center justify-center">
+                    {items.length}
+                  </span>
+                )}
+              </Link>
+            </Button>
             <CartSheet />
             <UserMenu />
             <a 
