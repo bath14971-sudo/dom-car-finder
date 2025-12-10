@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Car, getStatusLabel, CarStatus } from "@/data/cars";
 import { Eye, ShoppingCart } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
+import WishlistButton from "@/components/WishlistButton";
 
 interface CarCardProps {
   car: Car;
@@ -37,15 +38,18 @@ const CarCard = ({ car }: CarCardProps) => {
           <Badge variant={getStatusVariant(car.status)} className="absolute top-4 left-4 border-2">
             {getStatusLabel(car.status)}
           </Badge>
-          <Button
-            size="icon"
-            variant={isInCart ? "default" : "secondary"}
-            className="absolute top-4 right-4 h-9 w-9 opacity-0 group-hover:opacity-100 transition-opacity"
-            onClick={handleAddToCart}
-            disabled={isInCart}
-          >
-            <ShoppingCart className="h-4 w-4" />
-          </Button>
+          <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+            <WishlistButton carId={car.id} />
+            <Button
+              size="icon"
+              variant={isInCart ? "default" : "secondary"}
+              className="h-8 w-8 rounded-full bg-background/80 backdrop-blur-sm hover:bg-background"
+              onClick={handleAddToCart}
+              disabled={isInCart}
+            >
+              <ShoppingCart className="h-4 w-4" />
+            </Button>
+          </div>
         </div>
         <CardContent className="p-5">
           <div className="space-y-3">

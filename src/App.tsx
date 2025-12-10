@@ -5,11 +5,13 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import { CartProvider } from "@/hooks/useCart";
+import { WishlistProvider } from "@/hooks/useWishlist";
 import Index from "./pages/Index";
 import CarDetail from "./pages/CarDetail";
 import Auth from "./pages/Auth";
 import Checkout from "./pages/Checkout";
 import Orders from "./pages/Orders";
+import Wishlist from "./pages/Wishlist";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -20,16 +22,19 @@ const App = () => (
       <BrowserRouter>
         <AuthProvider>
           <CartProvider>
-            <Toaster />
-            <Sonner />
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/car/:id" element={<CarDetail />} />
-              <Route path="/auth" element={<Auth />} />
-              <Route path="/checkout" element={<Checkout />} />
-              <Route path="/orders" element={<Orders />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <WishlistProvider>
+              <Toaster />
+              <Sonner />
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/car/:id" element={<CarDetail />} />
+                <Route path="/auth" element={<Auth />} />
+                <Route path="/checkout" element={<Checkout />} />
+                <Route path="/orders" element={<Orders />} />
+                <Route path="/wishlist" element={<Wishlist />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </WishlistProvider>
           </CartProvider>
         </AuthProvider>
       </BrowserRouter>
