@@ -1,4 +1,5 @@
-import { Shield, Award, Wrench, CreditCard } from "lucide-react";
+import { Shield, Award, Wrench, CreditCard, MapPin, Phone, MessageCircle } from "lucide-react";
+import GoogleMap from "./GoogleMap";
 
 const features = [
   {
@@ -39,7 +40,7 @@ const AboutSection = () => {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {features.map((feature, index) => (
             <div
               key={feature.title}
@@ -53,6 +54,46 @@ const AboutSection = () => {
               <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
             </div>
           ))}
+        </div>
+
+        {/* Location Section with Google Map */}
+        <div className="grid lg:grid-cols-2 gap-8 items-start">
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold text-bordered">
+              Visit Our <span className="text-gradient-ocean">Showroom</span>
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Come see our selection of quality vehicles in person. Our friendly team is ready to help you find your perfect car.
+            </p>
+            
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
+                <MapPin className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                <div>
+                  <p className="font-medium text-foreground">Address</p>
+                  <p className="text-muted-foreground">Street 271, Sangkat Teuk Thla, Khan Sen Sok, Phnom Penh, Cambodia</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-3">
+                <Phone className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                <div>
+                  <p className="font-medium text-foreground">Phone</p>
+                  <p className="text-muted-foreground">+855 12 345 678</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-3">
+                <MessageCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                <div>
+                  <p className="font-medium text-foreground">Telegram</p>
+                  <p className="text-muted-foreground">@carplus_cambodia</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <GoogleMap className="w-full h-[400px] rounded-xl" />
         </div>
       </div>
     </section>
