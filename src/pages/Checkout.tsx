@@ -137,13 +137,23 @@ const Checkout = () => {
 
       if (itemsError) throw itemsError;
 
+      // Send order confirmation email
+      try {
+        await supabase.functions.invoke('send-order-status-email', {
+          body: { orderId: order.id, newStatus: 'pending' }
+        });
+      } catch (emailError) {
+        console.error('Failed to send order email:', emailError);
+        // Don't fail the order if email fails
+      }
+
       // Clear cart
       await clearCart();
 
       setOrderComplete(true);
       toast({
         title: "Order placed!",
-        description: "We will contact you shortly to confirm your order.",
+        description: "We will contact you shortly to confirm your order. A confirmation email has been sent.",
       });
     } catch (error) {
       console.error("Checkout error:", error);
