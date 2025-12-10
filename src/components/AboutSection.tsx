@@ -1,5 +1,9 @@
-import { Shield, Award, Wrench, CreditCard, MapPin, Phone, MessageCircle } from "lucide-react";
+import { Shield, Award, Wrench, CreditCard, MapPin, Phone, MessageCircle, Users, Car, Trophy, Clock } from "lucide-react";
 import GoogleMap from "./GoogleMap";
+import ContactForm from "./ContactForm";
+import BusinessHours from "./BusinessHours";
+import FAQSection from "./FAQSection";
+import SocialLinks from "./SocialLinks";
 
 const features = [
   {
@@ -24,79 +28,205 @@ const features = [
   },
 ];
 
+const stats = [
+  { icon: Clock, value: "10+", label: "Years Experience" },
+  { icon: Car, value: "500+", label: "Cars Sold" },
+  { icon: Users, value: "450+", label: "Happy Customers" },
+  { icon: Trophy, value: "#1", label: "Trusted Dealer" },
+];
+
+const teamMembers = [
+  {
+    name: "Sovann Chen",
+    role: "Founder & CEO",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop&crop=face",
+  },
+  {
+    name: "Dara Kim",
+    role: "Sales Manager",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face",
+  },
+  {
+    name: "Sreymom Phan",
+    role: "Finance Specialist",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=face",
+  },
+  {
+    name: "Virak Heng",
+    role: "Service Manager",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face",
+  },
+];
+
 const AboutSection = () => {
   return (
-    <section id="about" className="py-24 bg-gradient-light">
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-bordered">
-            About <span className="text-gradient-ocean">Car Plus</span>
-          </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            At Car Plus, we specialise in sourcing reliable cars from trusted suppliers. 
-            Our mission is to provide high-quality vehicles with transparent histories, warranties, 
-            and excellent customer service. Located in Phnom Penh, we offer flexible financing 
-            and a friendly team ready to assist you.
-          </p>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {features.map((feature, index) => (
-            <div
-              key={feature.title}
-              className="group p-6 rounded-xl bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 mb-4 group-hover:bg-primary/20 transition-colors">
-                <feature.icon className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2 text-foreground text-bordered-light">{feature.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Location Section with Google Map */}
-        <div className="grid lg:grid-cols-2 gap-8 items-start">
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-bordered">
-              Visit Our <span className="text-gradient-ocean">Showroom</span>
-            </h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Come see our selection of quality vehicles in person. Our friendly team is ready to help you find your perfect car.
+    <>
+      {/* About Section */}
+      <section id="about" className="py-24 bg-gradient-light">
+        <div className="container mx-auto px-4">
+          {/* Story & Stats */}
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-bordered">
+              About <span className="text-gradient-ocean">Car Plus</span>
+            </h2>
+            <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+              Founded in 2014, Car Plus has grown from a small family business to one of Phnom Penh&apos;s most trusted car dealerships. Our mission is to provide high-quality vehicles with transparent histories, warranties, and excellent customer service. We believe in building lasting relationships with our customers based on trust and integrity.
             </p>
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            {stats.map((stat, index) => (
+              <div
+                key={stat.label}
+                className="text-center p-6 rounded-xl bg-card border-2 border-border"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 mx-auto mb-3">
+                  <stat.icon className="h-6 w-6 text-primary" />
+                </div>
+                <p className="text-3xl font-bold text-gradient-ocean mb-1">{stat.value}</p>
+                <p className="text-sm text-muted-foreground">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Features */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            {features.map((feature, index) => (
+              <div
+                key={feature.title}
+                className="group p-6 rounded-xl bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 mb-4 group-hover:bg-primary/20 transition-colors">
+                  <feature.icon className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2 text-foreground text-bordered-light">{feature.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Team Members */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-center mb-8 text-bordered">
+              Meet Our <span className="text-gradient-ocean">Team</span>
+            </h3>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {teamMembers.map((member) => (
+                <div
+                  key={member.name}
+                  className="text-center p-6 rounded-xl bg-card border-2 border-border hover:border-primary/50 transition-all duration-300"
+                >
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-primary/20"
+                  />
+                  <h4 className="font-semibold text-foreground">{member.name}</h4>
+                  <p className="text-sm text-muted-foreground">{member.role}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Video Introduction */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-center mb-8 text-bordered">
+              Watch Our <span className="text-gradient-ocean">Story</span>
+            </h3>
+            <div className="max-w-3xl mx-auto aspect-video rounded-xl overflow-hidden border-2 border-border bg-card">
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                title="Car Plus Introduction"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
+          </div>
+
+          {/* Location Section with Google Map */}
+          <div className="grid lg:grid-cols-2 gap-8 items-start">
+            <div className="space-y-6">
+              <h3 className="text-2xl font-bold text-bordered">
+                Visit Our <span className="text-gradient-ocean">Showroom</span>
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Come see our selection of quality vehicles in person. Our friendly team is ready to help you find your perfect car.
+              </p>
+              
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <MapPin className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-foreground">Address</p>
+                    <p className="text-muted-foreground">Street 271, Sangkat Teuk Thla, Khan Sen Sok, Phnom Penh, Cambodia</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <Phone className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-foreground">Phone</p>
+                    <p className="text-muted-foreground">+855 12 345 678</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <MessageCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-foreground">Telegram</p>
+                    <p className="text-muted-foreground">@carplus_cambodia</p>
+                  </div>
+                </div>
+              </div>
+            </div>
             
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                <div>
-                  <p className="font-medium text-foreground">Address</p>
-                  <p className="text-muted-foreground">Street 271, Sangkat Teuk Thla, Khan Sen Sok, Phnom Penh, Cambodia</p>
-                </div>
+            <GoogleMap className="w-full h-[400px] rounded-xl" />
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-bordered">
+              Get in <span className="text-gradient-ocean">Touch</span>
+            </h2>
+            <p className="text-muted-foreground text-lg leading-relaxed">
+              Have questions about a car or want to schedule a test drive? Reach out to us and our team will get back to you promptly.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Contact Form */}
+            <div className="bg-card p-8 rounded-xl border-2 border-border">
+              <h3 className="text-xl font-bold mb-6 text-bordered">Send us a Message</h3>
+              <ContactForm />
+            </div>
+
+            {/* Info Sidebar */}
+            <div className="space-y-8">
+              <div className="bg-card p-6 rounded-xl border-2 border-border">
+                <BusinessHours />
               </div>
               
-              <div className="flex items-start gap-3">
-                <Phone className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                <div>
-                  <p className="font-medium text-foreground">Phone</p>
-                  <p className="text-muted-foreground">+855 12 345 678</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-3">
-                <MessageCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                <div>
-                  <p className="font-medium text-foreground">Telegram</p>
-                  <p className="text-muted-foreground">@carplus_cambodia</p>
-                </div>
+              <div className="bg-card p-6 rounded-xl border-2 border-border">
+                <SocialLinks />
               </div>
             </div>
           </div>
-          
-          <GoogleMap className="w-full h-[400px] rounded-xl" />
+
+          {/* FAQ Section */}
+          <div className="mt-16 bg-card p-8 rounded-xl border-2 border-border max-w-3xl mx-auto">
+            <FAQSection />
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
