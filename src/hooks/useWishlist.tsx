@@ -119,8 +119,18 @@ export const WishlistProvider = ({ children }: { children: ReactNode }) => {
 
 export const useWishlist = () => {
   const context = useContext(WishlistContext);
+
+  // Prevent blank screens if provider is temporarily missing (e.g. during HMR).
+  // In normal operation, App.tsx wraps the app in <WishlistProvider />.
   if (!context) {
-    throw new Error('useWishlist must be used within a WishlistProvider');
+    console.warn("useWishlist used without WishlistProvider");
+    return {
+      items: [],
+      loading: false,
+      isInWishlist: () => false,
+      toggleWishlist: async () => {},
+    } satisfies WishlistContextType;
   }
+
   return context;
 };
