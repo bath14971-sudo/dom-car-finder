@@ -1,44 +1,104 @@
-import { Clock } from "lucide-react";
+import { Clock, CheckCircle, XCircle } from "lucide-react";
 
 const businessHours = [
-  { day: "Monday", hours: "8:00 AM - 8:00 PM" },
-  { day: "Tuesday", hours: "8:00 AM - 8:00 PM" },
-  { day: "Wednesday", hours: "8:00 AM - 8:00 PM" },
-  { day: "Thursday", hours: "8:00 AM - 8:00 PM" },
-  { day: "Friday", hours: "8:00 AM - 8:00 PM" },
-  { day: "Saturday", hours: "8:00 AM - 6:00 PM" },
-  { day: "Sunday", hours: "8:00 AM - 6:00 PM" },
+  { day: "Mon", fullDay: "Monday", hours: "8:00 AM - 8:00 PM" },
+  { day: "Tue", fullDay: "Tuesday", hours: "8:00 AM - 8:00 PM" },
+  { day: "Wed", fullDay: "Wednesday", hours: "8:00 AM - 8:00 PM" },
+  { day: "Thu", fullDay: "Thursday", hours: "8:00 AM - 8:00 PM" },
+  { day: "Fri", fullDay: "Friday", hours: "8:00 AM - 8:00 PM" },
+  { day: "Sat", fullDay: "Saturday", hours: "8:00 AM - 6:00 PM" },
+  { day: "Sun", fullDay: "Sunday", hours: "8:00 AM - 6:00 PM" },
 ];
+
+const isCurrentlyOpen = () => {
+  const now = new Date();
+  const hour = now.getHours();
+  const day = now.getDay();
+  
+  // Sunday = 0, Saturday = 6
+  if (day === 0 || day === 6) {
+    return hour >= 8 && hour < 18;
+  }
+  return hour >= 8 && hour < 20;
+};
 
 const BusinessHours = () => {
   const today = new Date().getDay();
-  const dayIndex = today === 0 ? 6 : today - 1; // Convert to Monday = 0
+  const dayIndex = today === 0 ? 6 : today - 1;
+  const isOpen = isCurrentlyOpen();
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center gap-2">
-        <Clock className="h-5 w-5 text-primary" />
-        <h3 className="font-semibold text-foreground">Business Hours</h3>
+    <div className="bg-gradient-to-br from-primary/5 via-background to-ocean/10 rounded-2xl p-6 border border-primary/20 shadow-lg">
+      {/* Header with Open/Closed Status */}
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-primary/10 rounded-xl">
+            <Clock className="h-5 w-5 text-primary" />
+          </div>
+          <h3 className="font-semibold text-lg text-foreground">Business Hours</h3>
+        </div>
+        <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium ${
+          isOpen 
+            ? "bg-green-500/10 text-green-600 border border-green-500/30" 
+            : "bg-red-500/10 text-red-500 border border-red-500/30"
+        }`}>
+          {isOpen ? (
+            <>
+              <CheckCircle className="h-4 w-4" />
+              <span>Open Now</span>
+            </>
+          ) : (
+            <>
+              <XCircle className="h-4 w-4" />
+              <span>Closed</span>
+            </>
+          )}
+        </div>
       </div>
       
-      <div className="space-y-2">
-        {businessHours.map((item, index) => (
-          <div
-            key={item.day}
-            className={`flex justify-between items-center py-2 px-3 rounded-lg ${
-              index === dayIndex
-                ? "bg-primary/10 border border-primary/30"
-                : "hover:bg-muted/50"
-            }`}
-          >
-            <span className={`text-sm ${index === dayIndex ? "font-medium text-primary" : "text-muted-foreground"}`}>
-              {item.day}
-            </span>
-            <span className={`text-sm ${index === dayIndex ? "font-medium text-foreground" : "text-muted-foreground"}`}>
-              {item.hours}
-            </span>
-          </div>
-        ))}
+      {/* Days Grid */}
+      <div className="grid grid-cols-7 gap-2">
+        {businessHours.map((item, index) => {
+          const isToday = index === dayIndex;
+          return (
+            <div
+              key={item.day}
+              className={`relative flex flex-col items-center p-3 rounded-xl transition-all duration-300 ${
+                isToday
+                  ? "bg-primary text-primary-foreground shadow-md scale-105"
+                  : "bg-muted/50 hover:bg-muted"
+              }`}
+            >
+              <span className={`text-xs font-bold uppercase tracking-wider ${
+                isToday ? "text-primary-foreground" : "text-muted-foreground"
+              }`}>
+                {item.day}
+              </span>
+              <div className={`mt-2 text-center ${
+                isToday ? "text-primary-foreground" : "text-foreground"
+              }`}>
+                <div className="text-xs font-medium">
+                  {item.hours.split(" - ")[0]}
+                </div>
+                <div className="text-[10px] opacity-70 my-0.5">to</div>
+                <div className="text-xs font-medium">
+                  {item.hours.split(" - ")[1]}
+                </div>
+              </div>
+              {isToday && (
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-background animate-pulse" />
+              )}
+            </div>
+          );
+        })}
+      </div>
+      
+      {/* Today's Hours Highlight */}
+      <div className="mt-4 pt-4 border-t border-border/50">
+        <p className="text-center text-sm text-muted-foreground">
+          Today ({businessHours[dayIndex].fullDay}): {" "}
+          <span className="font-semibold text-foreground">{businessHours[dayIndex].hours}</span>
+        </p>
       </div>
     </div>
   );
