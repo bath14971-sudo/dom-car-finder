@@ -162,7 +162,7 @@ const AboutSection = () => {
                   <MapPin className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                   <div>
                     <p className="font-medium text-foreground">Address</p>
-                    <p className="text-muted-foreground">Street 271, Sangkat Teuk Thla, Khan Sen Sok, Phnom Penh, Cambodia</p>
+                    <p className="text-muted-foreground">House 393 Oknha Mong Reththy St. (1928), Phnom Penh 12101</p>
                   </div>
                 </div>
                 
@@ -170,7 +170,7 @@ const AboutSection = () => {
                   <Phone className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                   <div>
                     <p className="font-medium text-foreground">Phone</p>
-                    <p className="text-muted-foreground">+855 12 345 678</p>
+                    <p className="text-muted-foreground">069 927 292</p>
                   </div>
                 </div>
                 
