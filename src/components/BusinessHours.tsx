@@ -1,13 +1,13 @@
 import { Clock } from "lucide-react";
 
 const businessHours = [
-  { day: "Monday", hours: "8:00 AM - 6:00 PM" },
-  { day: "Tuesday", hours: "8:00 AM - 6:00 PM" },
-  { day: "Wednesday", hours: "8:00 AM - 6:00 PM" },
-  { day: "Thursday", hours: "8:00 AM - 6:00 PM" },
-  { day: "Friday", hours: "8:00 AM - 6:00 PM" },
-  { day: "Saturday", hours: "9:00 AM - 5:00 PM" },
-  { day: "Sunday", hours: "Closed" },
+  { day: "Monday", hours: "8:00 AM - 8:00 PM" },
+  { day: "Tuesday", hours: "8:00 AM - 8:00 PM" },
+  { day: "Wednesday", hours: "8:00 AM - 8:00 PM" },
+  { day: "Thursday", hours: "8:00 AM - 8:00 PM" },
+  { day: "Friday", hours: "8:00 AM - 8:00 PM" },
+  { day: "Saturday", hours: "8:00 AM - 6:00 PM" },
+  { day: "Sunday", hours: "8:00 AM - 6:00 PM" },
 ];
 
 const BusinessHours = () => {
