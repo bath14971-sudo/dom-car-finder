@@ -168,8 +168,21 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
 export const useCart = () => {
   const context = useContext(CartContext);
+
+  // Prevent blank screens if provider is temporarily missing (e.g. during HMR).
+  // In normal operation, App.tsx wraps the app in <CartProvider />.
   if (context === undefined) {
-    throw new Error("useCart must be used within a CartProvider");
+    console.warn("useCart used without CartProvider");
+    return {
+      items: [],
+      loading: false,
+      addToCart: async () => {},
+      removeFromCart: async () => {},
+      clearCart: async () => {},
+      getCartTotal: () => 0,
+      itemCount: 0,
+    } satisfies CartContextType;
   }
+
   return context;
 };
