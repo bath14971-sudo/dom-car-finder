@@ -4,6 +4,7 @@ import mercedesSilver from "@/assets/cars/mercedes-silver.jpg";
 import bmwBlue from "@/assets/cars/bmw-blue.jpg";
 import corollaRed from "@/assets/cars/corolla-red.jpg";
 import lexusBlack from "@/assets/cars/lexus-black.jpg";
+import priusSilver from "@/assets/cars/prius-silver.jpg";
 
 export type CarStatus = "ready" | "onroad" | "luxury" | "plate";
 
@@ -170,6 +171,31 @@ export const carsData: Car[] = [
       "Guarantee that the car has not been cut or repainted.",
       "Financing available or pay outright.",
       "Free registration plate, ceramic coating, premium floor mats and tyres.",
+    ],
+  },
+  {
+    id: "7",
+    code: "DCS2026_PRIUS_2022_XLE_Silver",
+    name: "Toyota Prius XLE",
+    model: "Toyota Prius",
+    year: 2022,
+    price: 32000,
+    status: "ready",
+    viewers: 24,
+    image: priusSilver,
+    images: [priusSilver, priusSilver, priusSilver],
+    bodyType: "Hatchback",
+    taxStatus: "Tax slip",
+    condition: "Excellent",
+    fuelType: "Hybrid",
+    color: "Silver",
+    description: [
+      "Fuel-efficient hybrid with excellent MPG.",
+      "Six‑month warranty on the engine and transmission.",
+      "Six‑month warranty on the hybrid battery system.",
+      "Guarantee that the car has not been cut or repainted.",
+      "Financing available or pay outright.",
+      "Free registration plate, UV coating, floor mats and four tyres.",
     ],
   },
 ];
