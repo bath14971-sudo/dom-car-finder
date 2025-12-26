@@ -78,7 +78,7 @@ export function CarAdvisorChat() {
     recognitionRef.current = new SpeechRecognitionAPI();
     recognitionRef.current.continuous = false;
     recognitionRef.current.interimResults = true;
-    recognitionRef.current.lang = "en-US";
+    recognitionRef.current.lang = "km-KH";
 
     recognitionRef.current.onresult = (event: SpeechRecognitionEvent) => {
       let finalTranscript = "";
