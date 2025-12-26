@@ -9,6 +9,7 @@ import AboutSection from "@/components/AboutSection";
 import FilterPanel, { FilterState, defaultFilters } from "@/components/FilterPanel";
 import InventoryToolbar, { SortOption, ViewMode } from "@/components/InventoryToolbar";
 import { carsData, CarStatus, Car } from "@/data/cars";
+import { CarAdvisorChat } from "@/components/CarAdvisorChat";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -167,6 +168,8 @@ const Index = () => {
         filters={filters}
         onFiltersChange={setFilters}
       />
+
+      <CarAdvisorChat />
     </div>
   );
 };
