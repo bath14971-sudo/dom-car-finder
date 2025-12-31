@@ -1,8 +1,6 @@
 import { Shield, Award, Wrench, CreditCard, MapPin, Phone, MessageCircle, Users, Car, Trophy, Clock } from "lucide-react";
-import GoogleMap from "./GoogleMap";
 import ContactForm from "./ContactForm";
 import BusinessHours from "./BusinessHours";
-import FAQSection from "./FAQSection";
 import SocialLinks from "./SocialLinks";
 
 const features = [
@@ -129,62 +127,34 @@ const AboutSection = () => {
             </div>
           </div>
 
-          {/* Video Introduction */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-center mb-8 text-bordered">
-              Watch Our <span className="text-gradient-ocean">Story</span>
+          {/* Location Section */}
+          <div className="max-w-2xl mx-auto text-center">
+            <h3 className="text-2xl font-bold text-bordered mb-6">
+              Visit Our <span className="text-gradient-ocean">Showroom</span>
             </h3>
-            <div className="max-w-3xl mx-auto aspect-video rounded-xl overflow-hidden border-2 border-border bg-card">
-              <iframe
-                width="100%"
-                height="100%"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                title="Car Plus Introduction"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full"
-              />
-            </div>
-          </div>
-
-          {/* Location Section with Google Map */}
-          <div className="grid lg:grid-cols-2 gap-8 items-start">
-            <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-bordered">
-                Visit Our <span className="text-gradient-ocean">Showroom</span>
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Come see our selection of quality vehicles in person. Our friendly team is ready to help you find your perfect car.
-              </p>
+            <p className="text-muted-foreground leading-relaxed mb-8">
+              Come see our selection of quality vehicles in person. Our friendly team is ready to help you find your perfect car.
+            </p>
+            
+            <div className="grid sm:grid-cols-3 gap-6">
+              <div className="flex flex-col items-center gap-2 p-4 rounded-xl bg-card border-2 border-border">
+                <MapPin className="h-6 w-6 text-primary" />
+                <p className="font-medium text-foreground">Address</p>
+                <p className="text-sm text-muted-foreground text-center">House 393 Oknha Mong Reththy St. (1928), Phnom Penh 12101</p>
+              </div>
               
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <MapPin className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                  <div>
-                    <p className="font-medium text-foreground">Address</p>
-                    <p className="text-muted-foreground">House 393 Oknha Mong Reththy St. (1928), Phnom Penh 12101</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-3">
-                  <Phone className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                  <div>
-                    <p className="font-medium text-foreground">Phone</p>
-                    <p className="text-muted-foreground">069 927 292</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-3">
-                  <MessageCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                  <div>
-                    <p className="font-medium text-foreground">Telegram</p>
-                    <p className="text-muted-foreground">@carplus_cambodia</p>
-                  </div>
-                </div>
+              <div className="flex flex-col items-center gap-2 p-4 rounded-xl bg-card border-2 border-border">
+                <Phone className="h-6 w-6 text-primary" />
+                <p className="font-medium text-foreground">Phone</p>
+                <p className="text-sm text-muted-foreground">069 927 292</p>
+              </div>
+              
+              <div className="flex flex-col items-center gap-2 p-4 rounded-xl bg-card border-2 border-border">
+                <MessageCircle className="h-6 w-6 text-primary" />
+                <p className="font-medium text-foreground">Telegram</p>
+                <p className="text-sm text-muted-foreground">@carplus_cambodia</p>
               </div>
             </div>
-            
-            <GoogleMap className="w-full h-[400px] rounded-xl" />
           </div>
         </div>
       </section>
@@ -220,10 +190,6 @@ const AboutSection = () => {
             </div>
           </div>
 
-          {/* FAQ Section */}
-          <div className="mt-16 bg-card p-8 rounded-xl border-2 border-border max-w-3xl mx-auto">
-            <FAQSection />
-          </div>
         </div>
       </section>
     </>
