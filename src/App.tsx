@@ -15,6 +15,7 @@ import Orders from "./pages/Orders";
 import Wishlist from "./pages/Wishlist";
 import Admin from "./pages/Admin";
 import AdminReports from "./pages/AdminReports";
+import AdminOrders from "./pages/AdminOrders";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +39,7 @@ const App = () => {
                   <Route path="/wishlist" element={<Wishlist />} />
                   <Route path="/admin" element={<Admin />} />
                   <Route path="/admin/reports" element={<AdminReports />} />
+                  <Route path="/admin/orders" element={<AdminOrders />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
                 <CarAdvisorChat />
