@@ -10,7 +10,8 @@ import {
 } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 import { X, RotateCcw } from "lucide-react";
-import { carsData } from "@/data/cars";
+import { useCars } from "@/hooks/useCars";
+import { useMemo } from "react";
 
 export interface FilterState {
   yearMin: number | null;
@@ -28,25 +29,48 @@ interface FilterPanelProps {
   onFiltersChange: (filters: FilterState) => void;
 }
 
-// Extract unique values from cars data
-const years = [...new Set(carsData.map((car) => car.year))].sort((a, b) => b - a);
-const fuelTypes = [...new Set(carsData.map((car) => car.fuelType))];
-const colors = [...new Set(carsData.map((car) => car.color))];
-const minPrice = Math.min(...carsData.map((car) => car.price));
-const maxPrice = Math.max(...carsData.map((car) => car.price));
+// Default values when no cars are loaded
+const DEFAULT_MIN_PRICE = 0;
+const DEFAULT_MAX_PRICE = 100000;
 
 export const defaultFilters: FilterState = {
   yearMin: null,
   yearMax: null,
   fuelType: null,
   color: null,
-  priceMin: minPrice,
-  priceMax: maxPrice,
+  priceMin: DEFAULT_MIN_PRICE,
+  priceMax: DEFAULT_MAX_PRICE,
 };
 
 const FilterPanel = ({ open, onOpenChange, filters, onFiltersChange }: FilterPanelProps) => {
+  const { data: carsData = [] } = useCars();
+
+  // Extract unique values from cars data
+  const { years, fuelTypes, colors, minPrice, maxPrice } = useMemo(() => {
+    if (carsData.length === 0) {
+      return {
+        years: [],
+        fuelTypes: [],
+        colors: [],
+        minPrice: DEFAULT_MIN_PRICE,
+        maxPrice: DEFAULT_MAX_PRICE,
+      };
+    }
+    return {
+      years: [...new Set(carsData.map((car) => car.year))].sort((a, b) => b - a),
+      fuelTypes: [...new Set(carsData.map((car) => car.fuelType))],
+      colors: [...new Set(carsData.map((car) => car.color))],
+      minPrice: Math.min(...carsData.map((car) => car.price)),
+      maxPrice: Math.max(...carsData.map((car) => car.price)),
+    };
+  }, [carsData]);
+
   const handleReset = () => {
-    onFiltersChange(defaultFilters);
+    onFiltersChange({
+      ...defaultFilters,
+      priceMin: minPrice,
+      priceMax: maxPrice,
+    });
   };
 
   const formatPrice = (price: number) => {

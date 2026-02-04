@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { CarStatus } from "@/data/cars";
+import { CarStatus } from "@/hooks/useCars";
 
 interface CategoryFilterProps {
   activeCategory: CarStatus | "all";

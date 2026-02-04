@@ -14,6 +14,90 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_users: {
+        Row: {
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      cars: {
+        Row: {
+          body_type: string
+          code: string
+          color: string
+          condition: string
+          created_at: string
+          description: string[]
+          fuel_type: string
+          id: string
+          image: string
+          images: string[]
+          is_active: boolean
+          model: string
+          name: string
+          price: number
+          status: string
+          tax_status: string
+          updated_at: string
+          viewers: number
+          year: number
+        }
+        Insert: {
+          body_type: string
+          code: string
+          color: string
+          condition: string
+          created_at?: string
+          description?: string[]
+          fuel_type: string
+          id?: string
+          image: string
+          images?: string[]
+          is_active?: boolean
+          model: string
+          name: string
+          price: number
+          status: string
+          tax_status: string
+          updated_at?: string
+          viewers?: number
+          year: number
+        }
+        Update: {
+          body_type?: string
+          code?: string
+          color?: string
+          condition?: string
+          created_at?: string
+          description?: string[]
+          fuel_type?: string
+          id?: string
+          image?: string
+          images?: string[]
+          is_active?: boolean
+          model?: string
+          name?: string
+          price?: number
+          status?: string
+          tax_status?: string
+          updated_at?: string
+          viewers?: number
+          year?: number
+        }
+        Relationships: []
+      }
       cart_items: {
         Row: {
           car_id: string

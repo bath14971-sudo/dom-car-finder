@@ -7,8 +7,8 @@ import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Package } from "lucide-react";
-import { carsData } from "@/data/cars";
+import { ArrowLeft, Package, Loader2 } from "lucide-react";
+import { useCars, type Car } from "@/hooks/useCars";
 
 interface Order {
   id: string;
@@ -27,6 +27,7 @@ interface OrderItem {
 
 const Orders = () => {
   const { user } = useAuth();
+  const { data: carsData = [] } = useCars();
   const [orders, setOrders] = useState<Order[]>([]);
   const [orderItems, setOrderItems] = useState<Record<string, OrderItem[]>>({});
   const [loading, setLoading] = useState(true);
@@ -113,8 +114,8 @@ const Orders = () => {
           <h1 className="text-3xl font-bold mb-8">My Orders</h1>
 
           {loading ? (
-            <div className="text-center py-12">
-              <p className="text-muted-foreground">Loading orders...</p>
+            <div className="flex justify-center py-12">
+              <Loader2 className="h-8 w-8 animate-spin text-primary" />
             </div>
           ) : orders.length === 0 ? (
             <Card>
