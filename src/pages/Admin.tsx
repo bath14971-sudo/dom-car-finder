@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Pencil, Trash2, Car, BarChart3, Loader2 } from "lucide-react";
+import { Plus, Pencil, Trash2, Car, BarChart3, Loader2, Package } from "lucide-react";
 import { Link } from "react-router-dom";
 import CarFormDialog from "@/components/admin/CarFormDialog";
 import {
@@ -110,9 +110,15 @@ const Admin = () => {
             </div>
             <div className="flex gap-3">
               <Button variant="outline" asChild>
+                <Link to="/admin/orders">
+                  <Package className="h-4 w-4 mr-2" />
+                  Orders
+                </Link>
+              </Button>
+              <Button variant="outline" asChild>
                 <Link to="/admin/reports">
                   <BarChart3 className="h-4 w-4 mr-2" />
-                  View Reports
+                  Reports
                 </Link>
               </Button>
               <Button onClick={() => setFormOpen(true)}>
