@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "./useAuth";
-import { carsData, Car } from "@/data/cars";
+import { useCars, type Car } from "./useCars";
 import { useToast } from "@/hooks/use-toast";
 
 interface CartItem {
@@ -27,6 +27,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [items, setItems] = useState<CartItem[]>([]);
   const [loading, setLoading] = useState(false);
   const { user } = useAuth();
+  const { data: carsData = [] } = useCars();
   const { toast } = useToast();
 
   const fetchCartItems = async () => {
@@ -65,8 +66,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    fetchCartItems();
-  }, [user]);
+    if (carsData.length > 0) {
+      fetchCartItems();
+    }
+  }, [user, carsData]);
 
   const addToCart = async (carId: string) => {
     if (!user) {

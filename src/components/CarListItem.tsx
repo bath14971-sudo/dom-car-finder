@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Car, getStatusLabel, CarStatus } from "@/data/cars";
+import { Car, getStatusLabel, CarStatus } from "@/hooks/useCars";
 import { Eye, ShoppingCart, Calendar, Fuel, Gauge } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import WishlistButton from "@/components/WishlistButton";

@@ -8,10 +8,12 @@ import CarListItem from "@/components/CarListItem";
 import AboutSection from "@/components/AboutSection";
 import FilterPanel, { FilterState, defaultFilters } from "@/components/FilterPanel";
 import InventoryToolbar, { SortOption, ViewMode } from "@/components/InventoryToolbar";
-import { carsData, CarStatus, Car } from "@/data/cars";
+import { useCars, type CarStatus, type Car } from "@/hooks/useCars";
+import { Loader2 } from "lucide-react";
 
 
 const Index = () => {
+  const { data: carsData = [], isLoading } = useCars();
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<CarStatus | "all">("all");
   const [filterPanelOpen, setFilterPanelOpen] = useState(false);
@@ -113,7 +115,11 @@ const Index = () => {
               onViewModeChange={setViewMode}
             />
 
-            {filteredAndSortedCars.length > 0 ? (
+            {isLoading ? (
+              <div className="flex justify-center py-16">
+                <Loader2 className="h-8 w-8 animate-spin text-primary" />
+              </div>
+            ) : filteredAndSortedCars.length > 0 ? (
               viewMode === "grid" ? (
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {filteredAndSortedCars.map((car, index) => (

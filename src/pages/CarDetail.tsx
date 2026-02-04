@@ -1,21 +1,29 @@
 import { useParams, Link } from "react-router-dom";
-import { getCarById, getStatusLabel } from "@/data/cars";
+import { useCarById, getStatusLabel } from "@/hooks/useCars";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, Phone, MessageCircle, Check, Calendar, Fuel, Palette, Shield, Car as CarIcon, ShoppingCart } from "lucide-react";
+import { ArrowLeft, Phone, MessageCircle, Check, Calendar, Fuel, Palette, Shield, Car as CarIcon, ShoppingCart, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useCart } from "@/hooks/useCart";
 
 const CarDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const car = getCarById(id || "");
+  const { data: car, isLoading } = useCarById(id || "");
   const [selectedImage, setSelectedImage] = useState(0);
   const { addToCart, items } = useCart();
 
   const isInCart = items.some((item) => item.car_id === id);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   if (!car) {
     return (
@@ -59,7 +67,7 @@ const CarDetail = () => {
             <div className="space-y-4">
               <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-surface">
                 <img
-                  src={car.images[selectedImage]}
+                  src={car.images[selectedImage] || car.image}
                   alt={car.name}
                   className="h-full w-full object-cover"
                 />

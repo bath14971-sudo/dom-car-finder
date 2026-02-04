@@ -7,7 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { carsData, CarStatus } from "@/data/cars";
+import { CarStatus } from "@/hooks/useCars";
 
 export type SortOption = "newest" | "price-asc" | "price-desc" | "year-desc" | "year-asc";
 export type ViewMode = "grid" | "list";
@@ -22,17 +22,6 @@ interface InventoryToolbarProps {
   onViewModeChange: (mode: ViewMode) => void;
 }
 
-const getCategoryStats = () => {
-  const stats = {
-    all: carsData.length,
-    ready: carsData.filter(c => c.status === "ready").length,
-    onroad: carsData.filter(c => c.status === "onroad").length,
-    luxury: carsData.filter(c => c.status === "luxury").length,
-    plate: carsData.filter(c => c.status === "plate").length,
-  };
-  return stats;
-};
-
 const InventoryToolbar = ({
   totalCars,
   filteredCount,
@@ -42,8 +31,6 @@ const InventoryToolbar = ({
   viewMode,
   onViewModeChange,
 }: InventoryToolbarProps) => {
-  const stats = getCategoryStats();
-
   return (
     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 p-4 bg-card rounded-xl border-2 border-border">
       {/* Stats */}
