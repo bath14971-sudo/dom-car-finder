@@ -7,7 +7,7 @@ const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type",
+    "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
 interface OrderStatusEmailRequest {
@@ -50,12 +50,62 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
+    // Authentication check - require admin access
+    const authHeader = req.headers.get("Authorization");
+    if (!authHeader?.startsWith("Bearer ")) {
+      return new Response(
+        JSON.stringify({ error: "Missing or invalid authorization header" }),
+        { status: 401, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    const supabaseUrl = Deno.env.get("SUPABASE_URL");
+    const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY");
+    
+    if (!supabaseUrl || !supabaseAnonKey) {
+      throw new Error("Supabase configuration missing");
+    }
+
+    const authSupabase = createClient(supabaseUrl, supabaseAnonKey, {
+      global: { headers: { Authorization: authHeader } },
+    });
+
+    const token = authHeader.replace("Bearer ", "");
+    const { data: claimsData, error: claimsError } = await authSupabase.auth.getClaims(token);
+    
+    if (claimsError || !claimsData?.claims) {
+      console.error("Auth error:", claimsError);
+      return new Response(
+        JSON.stringify({ error: "Unauthorized - invalid token" }),
+        { status: 401, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    const callerId = claimsData.claims.sub;
+    console.log("Authenticated caller:", callerId);
+
+    // Check if caller is an admin
+    const { data: adminData, error: adminError } = await authSupabase
+      .from("admin_users")
+      .select("id")
+      .eq("user_id", callerId)
+      .maybeSingle();
+
+    if (adminError || !adminData) {
+      console.error("Admin check failed:", adminError);
+      return new Response(
+        JSON.stringify({ error: "Admin access required" }),
+        { status: 403, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    console.log("Admin access verified for user:", callerId);
+
     const { orderId, newStatus }: OrderStatusEmailRequest = await req.json();
     console.log(`Processing order ${orderId} with status ${newStatus}`);
 
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+    const supabase = createClient(supabaseUrl!, supabaseServiceKey);
 
     // Fetch order and user details
     const { data: order, error: orderError } = await supabase
