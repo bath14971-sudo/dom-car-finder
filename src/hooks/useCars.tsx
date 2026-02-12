@@ -78,7 +78,6 @@ export const useCars = () => {
         .from("cars")
         .select("*")
         .order("created_at", { ascending: false });
-
       if (error) throw error;
       return (data as DbCar[]).map(mapDbCarToCar);
     },
@@ -94,7 +93,6 @@ export const useCarById = (id: string) => {
         .select("*")
         .eq("id", id)
         .maybeSingle();
-
       if (error) throw error;
       if (!data) return null;
       return mapDbCarToCar(data as DbCar);
@@ -105,52 +103,31 @@ export const useCarById = (id: string) => {
 
 export const useCreateCar = () => {
   const queryClient = useQueryClient();
-
   return useMutation({
     mutationFn: async (car: Omit<Car, "id" | "createdAt" | "updatedAt">) => {
       const { data, error } = await supabase
         .from("cars")
         .insert({
-          code: car.code,
-          name: car.name,
-          model: car.model,
-          year: car.year,
-          price: car.price,
-          status: car.status,
-          viewers: car.viewers || 0,
-          image: car.image,
-          images: car.images,
-          body_type: car.bodyType,
-          tax_status: car.taxStatus,
-          condition: car.condition,
-          fuel_type: car.fuelType,
-          color: car.color,
-          description: car.description,
-          is_active: car.isActive ?? true,
+          code: car.code, name: car.name, model: car.model, year: car.year,
+          price: car.price, status: car.status, viewers: car.viewers || 0,
+          image: car.image, images: car.images, body_type: car.bodyType,
+          tax_status: car.taxStatus, condition: car.condition, fuel_type: car.fuelType,
+          color: car.color, description: car.description, is_active: car.isActive ?? true,
         })
-        .select()
-        .single();
-
+        .select().single();
       if (error) throw error;
       return mapDbCarToCar(data as DbCar);
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["cars"] });
-      toast.success("Car added successfully");
-    },
-    onError: (error) => {
-      toast.error("Failed to add car: " + error.message);
-    },
+    onSuccess: () => { queryClient.invalidateQueries({ queryKey: ["cars"] }); toast.success("បានបន្ថែមឡានដោយជោគជ័យ"); },
+    onError: (error) => { toast.error("បរាជ័យក្នុងការបន្ថែមឡាន: " + error.message); },
   });
 };
 
 export const useUpdateCar = () => {
   const queryClient = useQueryClient();
-
   return useMutation({
     mutationFn: async ({ id, ...car }: Partial<Car> & { id: string }) => {
       const updateData: Record<string, unknown> = {};
-      
       if (car.code !== undefined) updateData.code = car.code;
       if (car.name !== undefined) updateData.name = car.name;
       if (car.model !== undefined) updateData.model = car.model;
@@ -167,56 +144,33 @@ export const useUpdateCar = () => {
       if (car.color !== undefined) updateData.color = car.color;
       if (car.description !== undefined) updateData.description = car.description;
       if (car.isActive !== undefined) updateData.is_active = car.isActive;
-
-      const { data, error } = await supabase
-        .from("cars")
-        .update(updateData)
-        .eq("id", id)
-        .select()
-        .single();
-
+      const { data, error } = await supabase.from("cars").update(updateData).eq("id", id).select().single();
       if (error) throw error;
       return mapDbCarToCar(data as DbCar);
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["cars"] });
-      toast.success("Car updated successfully");
-    },
-    onError: (error) => {
-      toast.error("Failed to update car: " + error.message);
-    },
+    onSuccess: () => { queryClient.invalidateQueries({ queryKey: ["cars"] }); toast.success("បានធ្វើបច្ចុប្បន្នភាពឡានដោយជោគជ័យ"); },
+    onError: (error) => { toast.error("បរាជ័យក្នុងការធ្វើបច្ចុប្បន្នភាពឡាន: " + error.message); },
   });
 };
 
 export const useDeleteCar = () => {
   const queryClient = useQueryClient();
-
   return useMutation({
     mutationFn: async (id: string) => {
       const { error } = await supabase.from("cars").delete().eq("id", id);
       if (error) throw error;
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["cars"] });
-      toast.success("Car deleted successfully");
-    },
-    onError: (error) => {
-      toast.error("Failed to delete car: " + error.message);
-    },
+    onSuccess: () => { queryClient.invalidateQueries({ queryKey: ["cars"] }); toast.success("បានលុបឡានដោយជោគជ័យ"); },
+    onError: (error) => { toast.error("បរាជ័យក្នុងការលុបឡាន: " + error.message); },
   });
 };
 
 export const getStatusLabel = (status: CarStatus): string => {
   switch (status) {
-    case "ready":
-      return "Ready car";
-    case "onroad":
-      return "On-road car";
-    case "luxury":
-      return "Luxury car";
-    case "plate":
-      return "With licence plate";
-    default:
-      return status;
+    case "ready": return "ឡានរួចរាល់";
+    case "onroad": return "ឡានលើផ្លូវ";
+    case "luxury": return "ឡានប្រណីត";
+    case "plate": return "មានស្លាកលេខ";
+    default: return status;
   }
 };

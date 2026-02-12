@@ -6,52 +6,52 @@ import SocialLinks from "./SocialLinks";
 const features = [
   {
     icon: Shield,
-    title: "Warranty Included",
-    description: "Six-month warranty on engine and transmission with every purchase.",
+    title: "មានធានា",
+    description: "ធានា ៦ ខែលើម៉ាស៊ីន និងប្រអប់លេខជាមួយរាល់ការទិញ។",
   },
   {
     icon: Award,
-    title: "Quality Assured",
-    description: "All vehicles are thoroughly inspected and certified before sale.",
+    title: "គុណភាពធានា",
+    description: "រថយន្តទាំងអស់ត្រូវបានត្រួតពិនិត្យ និងបញ្ជាក់មុនលក់។",
   },
   {
     icon: Wrench,
-    title: "Full Service History",
-    description: "Complete documentation and transparent vehicle histories.",
+    title: "ប្រវត្តិសេវាកម្មពេញលេញ",
+    description: "ឯកសារគ្រប់គ្រាន់ និងប្រវត្តិរថយន្តថ្លាភ្លឺ។",
   },
   {
     icon: CreditCard,
-    title: "Flexible Financing",
-    description: "Easy payment options with financing available for all customers.",
+    title: "ហិរញ្ញវត្ថុបត់បែន",
+    description: "ជម្រើសបង់រំលស់ងាយស្រួលជាមួយហិរញ្ញវត្ថុសម្រាប់អតិថិជនទាំងអស់។",
   },
 ];
 
 const stats = [
-  { icon: Clock, value: "10+", label: "Years Experience" },
-  { icon: Car, value: "500+", label: "Cars Sold" },
-  { icon: Users, value: "450+", label: "Happy Customers" },
-  { icon: Trophy, value: "#1", label: "Trusted Dealer" },
+  { icon: Clock, value: "10+", label: "ឆ្នាំបទពិសោធន៍" },
+  { icon: Car, value: "500+", label: "ឡានបានលក់" },
+  { icon: Users, value: "450+", label: "អតិថិជនសប្បាយចិត្ត" },
+  { icon: Trophy, value: "#1", label: "ឈ្មួញទុកចិត្ត" },
 ];
 
 const teamMembers = [
   {
-    name: "Sovann Chen",
-    role: "Founder & CEO",
+    name: "សុវណ្ណ ចេន",
+    role: "ស្ថាបនិក និង CEO",
     image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop&crop=face",
   },
   {
-    name: "Dara Kim",
-    role: "Sales Manager",
+    name: "តារា គឹម",
+    role: "អ្នកគ្រប់គ្រងផ្នែកលក់",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face",
   },
   {
-    name: "Sreymom Phan",
-    role: "Finance Specialist",
+    name: "ស្រីមុំ ផាន់",
+    role: "អ្នកឯកទេសហិរញ្ញវត្ថុ",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=face",
   },
   {
-    name: "Virak Heng",
-    role: "Service Manager",
+    name: "វីរៈ ហេង",
+    role: "អ្នកគ្រប់គ្រងសេវាកម្ម",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face",
   },
 ];
@@ -59,26 +59,20 @@ const teamMembers = [
 const AboutSection = () => {
   return (
     <>
-      {/* About Section */}
       <section id="about" className="py-24 bg-gradient-light">
         <div className="container mx-auto px-4">
-          {/* Story & Stats */}
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-bordered">
-              About <span className="text-gradient-ocean">Car Plus</span>
+              អំពី <span className="text-gradient-ocean">Car Plus</span>
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-              Founded in 2014, Car Plus has grown from a small family business to one of Phnom Penh&apos;s most trusted car dealerships. Our mission is to provide high-quality vehicles with transparent histories, warranties, and excellent customer service. We believe in building lasting relationships with our customers based on trust and integrity.
+              បង្កើតឡើងក្នុងឆ្នាំ ២០១៤ Car Plus បានរីកចម្រើនពីអាជីវកម្មគ្រួសារតូចមួយ ទៅជាឈ្មួញលក់រថយន្តដែលទុកចិត្តបំផុតមួយនៅភ្នំពេញ។ បេសកកម្មរបស់យើងគឺផ្តល់រថយន្តគុណភាពខ្ពស់ជាមួយប្រវត្តិថ្លាភ្លឺ ធានា និងសេវាកម្មអតិថិជនល្អឥតខ្ចោះ។
             </p>
           </div>
 
-          {/* Stats */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {stats.map((stat, index) => (
-              <div
-                key={stat.label}
-                className="text-center p-6 rounded-xl bg-card border-2 border-border"
-              >
+            {stats.map((stat) => (
+              <div key={stat.label} className="text-center p-6 rounded-xl bg-card border-2 border-border">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 mx-auto mb-3">
                   <stat.icon className="h-6 w-6 text-primary" />
                 </div>
@@ -88,13 +82,9 @@ const AboutSection = () => {
             ))}
           </div>
 
-          {/* Features */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {features.map((feature, index) => (
-              <div
-                key={feature.title}
-                className="group p-6 rounded-xl bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg"
-              >
+            {features.map((feature) => (
+              <div key={feature.title} className="group p-6 rounded-xl bg-card border-2 border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 mb-4 group-hover:bg-primary/20 transition-colors">
                   <feature.icon className="h-6 w-6 text-primary" />
                 </div>
@@ -104,22 +94,14 @@ const AboutSection = () => {
             ))}
           </div>
 
-          {/* Team Members */}
           <div className="mb-16">
             <h3 className="text-2xl font-bold text-center mb-8 text-bordered">
-              Meet Our <span className="text-gradient-ocean">Team</span>
+              ស្គាល់ <span className="text-gradient-ocean">ក្រុមការងារ</span>យើង
             </h3>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {teamMembers.map((member) => (
-                <div
-                  key={member.name}
-                  className="text-center p-6 rounded-xl bg-card border-2 border-border hover:border-primary/50 transition-all duration-300"
-                >
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-primary/20"
-                  />
+                <div key={member.name} className="text-center p-6 rounded-xl bg-card border-2 border-border hover:border-primary/50 transition-all duration-300">
+                  <img src={member.image} alt={member.name} className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-primary/20" />
                   <h4 className="font-semibold text-foreground">{member.name}</h4>
                   <p className="text-sm text-muted-foreground">{member.role}</p>
                 </div>
@@ -127,31 +109,30 @@ const AboutSection = () => {
             </div>
           </div>
 
-          {/* Location Section */}
           <div className="max-w-2xl mx-auto text-center">
             <h3 className="text-2xl font-bold text-bordered mb-6">
-              Visit Our <span className="text-gradient-ocean">Showroom</span>
+              ទស្សនា <span className="text-gradient-ocean">សាលបង្ហាញ</span>រយើង
             </h3>
             <p className="text-muted-foreground leading-relaxed mb-8">
-              Come see our selection of quality vehicles in person. Our friendly team is ready to help you find your perfect car.
+              សូមអញ្ជើញមកមើលរថយន្តគុណភាពរបស់យើងដោយផ្ទាល់។ ក្រុមការងាររបស់យើងរួចរាល់ជួយអ្នកស្វែងរកឡានដ៏ល្អឥតខ្ចោះ។
             </p>
             
             <div className="grid sm:grid-cols-3 gap-6">
               <div className="flex flex-col items-center gap-2 p-4 rounded-xl bg-card border-2 border-border">
                 <MapPin className="h-6 w-6 text-primary" />
-                <p className="font-medium text-foreground">Address</p>
-                <p className="text-sm text-muted-foreground text-center">House 393 Oknha Mong Reththy St. (1928), Phnom Penh 12101</p>
+                <p className="font-medium text-foreground">អាសយដ្ឋាន</p>
+                <p className="text-sm text-muted-foreground text-center">ផ្ទះ ៣៩៣ ផ្លូវឧកញ៉ា ម៉ុង ឫទ្ធី (១៩២៨) ភ្នំពេញ ១២១០១</p>
               </div>
               
               <div className="flex flex-col items-center gap-2 p-4 rounded-xl bg-card border-2 border-border">
                 <Phone className="h-6 w-6 text-primary" />
-                <p className="font-medium text-foreground">Phone</p>
+                <p className="font-medium text-foreground">ទូរស័ព្ទ</p>
                 <p className="text-sm text-muted-foreground">069 927 292</p>
               </div>
               
               <div className="flex flex-col items-center gap-2 p-4 rounded-xl bg-card border-2 border-border">
                 <MessageCircle className="h-6 w-6 text-primary" />
-                <p className="font-medium text-foreground">Telegram</p>
+                <p className="font-medium text-foreground">តេឡេក្រាម</p>
                 <p className="text-sm text-muted-foreground">@carplus_cambodia</p>
               </div>
             </div>
@@ -159,26 +140,23 @@ const AboutSection = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
       <section id="contact" className="py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-bordered">
-              Get in <span className="text-gradient-ocean">Touch</span>
+              ទំនាក់ <span className="text-gradient-ocean">ទំនង</span>
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed">
-              Have questions about a car or want to schedule a test drive? Reach out to us and our team will get back to you promptly.
+              មានសំណួរអំពីឡាន ឬចង់ណាត់ជួបសាកឡាន? ទាក់ទងមកយើង ហើយក្រុមការងារយើងនឹងឆ្លើយតបជូនឆាប់រហ័ស។
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
             <div className="bg-card p-8 rounded-xl border-2 border-border">
-              <h3 className="text-xl font-bold mb-6 text-bordered">Send us a Message</h3>
+              <h3 className="text-xl font-bold mb-6 text-bordered">ផ្ញើសារមកយើង</h3>
               <ContactForm />
             </div>
 
-            {/* Info Sidebar */}
             <div className="space-y-8">
               <div className="bg-card p-6 rounded-xl border-2 border-border">
                 <BusinessHours />
@@ -189,7 +167,6 @@ const AboutSection = () => {
               </div>
             </div>
           </div>
-
         </div>
       </section>
     </>
