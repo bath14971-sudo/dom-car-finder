@@ -7,11 +7,11 @@ interface CategoryFilterProps {
 }
 
 const categories: { value: CarStatus | "all"; label: string }[] = [
-  { value: "all", label: "All Cars" },
-  { value: "onroad", label: "On-road Cars" },
-  { value: "ready", label: "Ready Cars" },
-  { value: "luxury", label: "Luxury Cars" },
-  { value: "plate", label: "With Plates" },
+  { value: "all", label: "ឡានទាំងអស់" },
+  { value: "onroad", label: "ឡានលើផ្លូវ" },
+  { value: "ready", label: "ឡានរួចរាល់" },
+  { value: "luxury", label: "ឡានប្រណីត" },
+  { value: "plate", label: "មានស្លាកលេខ" },
 ];
 
 const CategoryFilter = ({ activeCategory, onCategoryChange }: CategoryFilterProps) => {

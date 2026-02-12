@@ -21,11 +21,11 @@ interface HeroSectionProps {
 }
 
 const slides = [
-  { image: slide1Bg, alt: "Christmas Promotion" },
-  { image: slide2Bg, alt: "New Year Celebration" },
-  { image: slide3Bg, alt: "Car Plus Showroom" },
-  { image: slide4Bg, alt: "Coupon Deals" },
-  { image: slide5Bg, alt: "Quality Service" },
+  { image: slide1Bg, alt: "ប្រូម៉ូសិន Christmas" },
+  { image: slide2Bg, alt: "ការអបអរឆ្នាំថ្មី" },
+  { image: slide3Bg, alt: "សាល Car Plus" },
+  { image: slide4Bg, alt: "ប្រូម៉ូសិនប័ណ្ណ" },
+  { image: slide5Bg, alt: "សេវាកម្មគុណភាព" },
 ];
 
 const HeroSection = ({
@@ -38,14 +38,12 @@ const HeroSection = ({
 
   useEffect(() => {
     if (!api) return;
-
     setCurrent(api.selectedScrollSnap());
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap());
     });
   }, [api]);
 
-  // Auto-play
   useEffect(() => {
     if (!api) return;
     const interval = setInterval(() => {
@@ -59,7 +57,6 @@ const HeroSection = ({
 
   return (
     <section className="relative min-h-[60vh] md:min-h-[70vh] flex items-center justify-center overflow-hidden">
-      {/* Background Images - all slides preloaded, visibility controlled */}
       {slides.map((slide, index) => (
         <div
           key={index}
@@ -71,7 +68,6 @@ const HeroSection = ({
         </div>
       ))}
 
-      {/* Navigation Arrows */}
       <Button
         variant="ghost"
         size="icon"
@@ -89,12 +85,7 @@ const HeroSection = ({
         <ChevronRight className="h-6 w-6" />
       </Button>
 
-      {/* Hidden Carousel for API control */}
-      <Carousel
-        setApi={setApi}
-        opts={{ loop: true }}
-        className="hidden"
-      >
+      <Carousel setApi={setApi} opts={{ loop: true }} className="hidden">
         <CarouselContent>
           {slides.map((_, index) => (
             <CarouselItem key={index} />
@@ -102,7 +93,6 @@ const HeroSection = ({
         </CarouselContent>
       </Carousel>
 
-      {/* Slide Indicators */}
       <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 flex justify-center gap-2">
         {slides.map((_, index) => (
           <button
@@ -117,14 +107,13 @@ const HeroSection = ({
         ))}
       </div>
 
-      {/* Search Bar at bottom */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 w-full max-w-xl px-4">
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="relative flex-1">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
             <Input
               type="text"
-              placeholder="Search by name or model..."
+              placeholder="ស្វែងរកតាមឈ្មោះ ឬម៉ូដែល..."
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
               className="pl-12 h-14 border-2 bg-background/90 backdrop-blur-sm"
@@ -137,7 +126,7 @@ const HeroSection = ({
             onClick={onFilterClick}
           >
             <SlidersHorizontal className="h-5 w-5" />
-            Filter
+            តម្រង
           </Button>
         </div>
       </div>

@@ -15,21 +15,21 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
-            <img src={logo} alt="Car Plus Logo" className="h-16 w-auto rounded-lg border-2 border-primary/30" />
+            <img src={logo} alt="Car Plus ឡូហ្គោ" className="h-16 w-auto rounded-lg border-2 border-primary/30" />
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
             <Link to="/" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors border-b-2 border-transparent hover:border-primary pb-1">
-              Home
+              ទំព័រដើម
             </Link>
             <Link to="/#inventory" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors border-b-2 border-transparent hover:border-primary pb-1">
-              Inventory
+              ស្តុកឡាន
             </Link>
             <Link to="/#about" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors border-b-2 border-transparent hover:border-primary pb-1">
-              About
+              អំពីយើង
             </Link>
             <Link to="/#contact" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors border-b-2 border-transparent hover:border-primary pb-1">
-              Contact
+              ទំនាក់ទំនង
             </Link>
           </nav>
 

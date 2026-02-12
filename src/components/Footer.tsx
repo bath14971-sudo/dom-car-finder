@@ -8,57 +8,57 @@ const Footer = () => {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
             <Link to="/" className="flex items-center gap-3">
-              <img src={logo} alt="Car Plus Logo" className="h-10 w-auto rounded-lg border-2 border-primary/30" />
+              <img src={logo} alt="Car Plus ឡូហ្គោ" className="h-10 w-auto rounded-lg border-2 border-primary/30" />
               <span className="text-xl font-bold text-foreground text-bordered">
                 Car <span className="text-gradient-ocean">Plus</span>
               </span>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Your trusted source for quality vehicles in Phnom Penh. High-quality cars with transparent histories and excellent service.
+              ប្រភពដែលអ្នកទុកចិត្តសម្រាប់រថយន្តគុណភាពនៅភ្នំពេញ។ រថយន្តគុណភាពខ្ពស់ជាមួយប្រវត្តិថ្លាភ្លឺ និងសេវាកម្មល្អឥតខ្ចោះ។
             </p>
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground border-b-2 border-primary pb-2 inline-block">Quick Links</h3>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground border-b-2 border-primary pb-2 inline-block">តំណភ្ជាប់រហ័ស</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Home
+                  ទំព័រដើម
                 </Link>
               </li>
               <li>
                 <Link to="/#inventory" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Browse Cars
+                  មើលឡាន
                 </Link>
               </li>
               <li>
                 <Link to="/#about" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  About Us
+                  អំពីយើង
                 </Link>
               </li>
             </ul>
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground border-b-2 border-primary pb-2 inline-block">Categories</h3>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground border-b-2 border-primary pb-2 inline-block">ប្រភេទ</h3>
             <ul className="space-y-2">
               <li>
-                <span className="text-sm text-muted-foreground">Ready Cars</span>
+                <span className="text-sm text-muted-foreground">ឡានរួចរាល់</span>
               </li>
               <li>
-                <span className="text-sm text-muted-foreground">On-road Cars</span>
+                <span className="text-sm text-muted-foreground">ឡានលើផ្លូវ</span>
               </li>
               <li>
-                <span className="text-sm text-muted-foreground">Luxury Cars</span>
+                <span className="text-sm text-muted-foreground">ឡានប្រណីត</span>
               </li>
               <li>
-                <span className="text-sm text-muted-foreground">Cars with Plates</span>
+                <span className="text-sm text-muted-foreground">ឡានមានស្លាកលេខ</span>
               </li>
             </ul>
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground border-b-2 border-primary pb-2 inline-block">Get in Touch</h3>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground border-b-2 border-primary pb-2 inline-block">ទំនាក់ទំនង</h3>
             <ul className="space-y-3">
               <li className="flex items-center gap-3">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-primary/30 bg-surface">
@@ -104,7 +104,7 @@ const Footer = () => {
 
         <div className="mt-12 pt-8 border-t-2 border-border">
           <p className="text-center text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Car Plus. All rights reserved. Located in Phnom Penh, Cambodia.
+            © {new Date().getFullYear()} Car Plus។ រក្សាសិទ្ធិគ្រប់យ៉ាង។ ទីតាំងនៅភ្នំពេញ កម្ពុជា។
           </p>
         </div>
       </div>
