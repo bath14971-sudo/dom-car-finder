@@ -13,9 +13,10 @@ export default {
   		}
   	},
   	extend: {
-  		fontFamily: {
-  			sans: ['Inter', 'sans-serif']
-  		},
+		fontFamily: {
+			sans: ['Battambang', 'Inter', 'sans-serif'],
+			heading: ['Bokor', 'Battambang', 'cursive']
+		},
   		colors: {
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
