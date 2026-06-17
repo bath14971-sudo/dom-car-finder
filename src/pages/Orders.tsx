@@ -221,6 +221,9 @@ const Orders = () => {
                     </div>
                     <div className="flex items-center gap-2">
                       <Badge variant={getStatusVariant(order.status)}>{getStatusLabel(order.status)}</Badge>
+                      <Button variant="outline" size="sm" onClick={() => handleDownloadPDF(order)}>
+                        <Download className="h-4 w-4 mr-2" />ទាញយក PDF
+                      </Button>
                       <Button variant="outline" size="sm" onClick={() => handlePrint(order)}>
                         <Printer className="h-4 w-4 mr-2" />បោះពុម្ព
                       </Button>
