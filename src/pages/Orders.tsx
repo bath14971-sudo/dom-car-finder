@@ -7,8 +7,10 @@ import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Package, Loader2, Printer } from "lucide-react";
+import { ArrowLeft, Package, Loader2, Printer, Download } from "lucide-react";
 import { useCars, type Car } from "@/hooks/useCars";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
 interface Order { id: string; status: string; total_amount: number; created_at: string; shipping_address: string | null; phone: string | null; }
 interface OrderItem { id: string; car_id: string; price: number; }
