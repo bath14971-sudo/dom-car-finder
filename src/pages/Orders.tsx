@@ -62,6 +62,66 @@ const Orders = () => {
     switch (status) { case "pending": return "secondary"; case "confirmed": case "completed": return "default"; case "cancelled": return "destructive"; default: return "secondary"; }
   };
 
+  const handlePrint = (order: Order) => {
+    const items = orderItems[order.id] || [];
+    const rows = items.map((item) => {
+      const car = carsData.find((c) => c.id === item.car_id);
+      return `
+        <tr>
+          <td>${car?.name ?? "-"}</td>
+          <td>${car?.code ?? "-"}</td>
+          <td style="text-align:right">$${Number(item.price).toLocaleString()}</td>
+        </tr>`;
+    }).join("");
+
+    const html = `<!doctype html><html><head><meta charset="utf-8"/>
+<title>វិក្កយបត្រ #${order.id.slice(0, 8)}</title>
+<link href="https://fonts.googleapis.com/css2?family=Battambang:wght@400;700&family=Bokor&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{font-family:'Battambang',sans-serif;color:#111;padding:32px;max-width:760px;margin:0 auto}
+  h1{font-family:'Bokor',sans-serif;font-size:28px;margin:0 0 4px}
+  .muted{color:#666;font-size:13px}
+  .row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;border-bottom:2px solid #111;padding-bottom:12px}
+  table{width:100%;border-collapse:collapse;margin-top:16px}
+  th,td{padding:10px 8px;border-bottom:1px solid #ddd;text-align:left;font-size:14px}
+  th{background:#f4f4f4}
+  .total{display:flex;justify-content:space-between;margin-top:16px;padding-top:12px;border-top:2px solid #111;font-weight:700;font-size:18px}
+  .info{margin-top:8px;font-size:13px;line-height:1.6}
+  .footer{margin-top:32px;text-align:center;font-size:12px;color:#666}
+  @media print{body{padding:0}}
+</style></head><body>
+  <div class="row">
+    <div>
+      <h1>DOM Car Finder</h1>
+      <div class="muted">វិក្កយបត្របញ្ជាទិញ / Order Receipt</div>
+    </div>
+    <div style="text-align:right">
+      <div><strong>#${order.id.slice(0, 8)}</strong></div>
+      <div class="muted">${new Date(order.created_at).toLocaleDateString("km-KH", { year: "numeric", month: "long", day: "numeric" })}</div>
+      <div class="muted">ស្ថានភាព: ${getStatusLabel(order.status)}</div>
+    </div>
+  </div>
+  <div class="info">
+    <div><strong>ទូរស័ព្ទ:</strong> ${order.phone ?? "-"}</div>
+    <div><strong>អាសយដ្ឋាន:</strong> ${order.shipping_address ?? "-"}</div>
+  </div>
+  <table>
+    <thead><tr><th>ឡាន</th><th>កូដ</th><th style="text-align:right">តម្លៃ</th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table>
+  <div class="total"><span>សរុប</span><span>$${Number(order.total_amount).toLocaleString()}</span></div>
+  <div class="footer">សូមអរគុណចំពោះការទុកចិត្ត!</div>
+  <script>window.onload=()=>{setTimeout(()=>{window.print();},400);};</script>
+</body></html>`;
+
+    const w = window.open("", "_blank", "width=820,height=900");
+    if (!w) return;
+    w.document.open();
+    w.document.write(html);
+    w.document.close();
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
