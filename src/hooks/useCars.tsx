@@ -144,7 +144,7 @@ export const useUpdateCar = () => {
       if (car.color !== undefined) updateData.color = car.color;
       if (car.description !== undefined) updateData.description = car.description;
       if (car.isActive !== undefined) updateData.is_active = car.isActive;
-      const { data, error } = await supabase.from("cars").update(updateData).eq("id", id).select().single();
+      const { data, error } = await supabase.from("cars").update(updateData as never).eq("id", id).select().single();
       if (error) throw error;
       return mapDbCarToCar(data as DbCar);
     },
