@@ -154,7 +154,12 @@ const Orders = () => {
                         {new Date(order.created_at).toLocaleDateString("km-KH", { year: "numeric", month: "long", day: "numeric" })}
                       </p>
                     </div>
-                    <Badge variant={getStatusVariant(order.status)}>{getStatusLabel(order.status)}</Badge>
+                    <div className="flex items-center gap-2">
+                      <Badge variant={getStatusVariant(order.status)}>{getStatusLabel(order.status)}</Badge>
+                      <Button variant="outline" size="sm" onClick={() => handlePrint(order)}>
+                        <Printer className="h-4 w-4 mr-2" />បោះពុម្ព
+                      </Button>
+                    </div>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
