@@ -124,16 +124,16 @@ const Orders = () => {
     w.document.close();
   };
 
-  const buildReceiptHTML = (order: Order, autoPrint: boolean) => {
+  const buildReceiptHTML = (order: Order) => {
     const items = orderItems[order.id] || [];
     const rows = items.map((item) => {
       const car = carsData.find((c) => c.id === item.car_id);
-      return `<tr><td>${car?.name ?? "-"}</td><td>${car?.code ?? "-"}</td><td style="text-align:right">$${Number(item.price).toLocaleString()}</td></tr>`;
+      return `<tr><td style="padding:10px 8px;border-bottom:1px solid #ddd">${car?.name ?? "-"}</td><td style="padding:10px 8px;border-bottom:1px solid #ddd">${car?.code ?? "-"}</td><td style="padding:10px 8px;border-bottom:1px solid #ddd;text-align:right">$${Number(item.price).toLocaleString()}</td></tr>`;
     }).join("");
-    return `<div id="receipt" style="font-family:'Battambang',sans-serif;color:#111;padding:32px;width:760px;background:#fff">
+    return `<div id="receipt" style="font-family:'Battambang','Khmer OS',sans-serif;color:#111;padding:32px;width:760px;background:#fff">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;border-bottom:2px solid #111;padding-bottom:12px">
         <div>
-          <h1 style="font-family:'Bokor',sans-serif;font-size:28px;margin:0 0 4px">DOM Car Finder</h1>
+          <h1 style="font-family:'Bokor','Khmer OS',sans-serif;font-size:28px;margin:0 0 4px">DOM Car Finder</h1>
           <div style="color:#666;font-size:13px">វិក្កយបត្របញ្ជាទិញ / Order Receipt</div>
         </div>
         <div style="text-align:right">
@@ -148,23 +148,45 @@ const Orders = () => {
       </div>
       <table style="width:100%;border-collapse:collapse;margin-top:16px;font-size:14px">
         <thead><tr><th style="padding:10px 8px;border-bottom:1px solid #ddd;background:#f4f4f4;text-align:left">ឡាន</th><th style="padding:10px 8px;border-bottom:1px solid #ddd;background:#f4f4f4;text-align:left">កូដ</th><th style="padding:10px 8px;border-bottom:1px solid #ddd;background:#f4f4f4;text-align:right">តម្លៃ</th></tr></thead>
-        <tbody>${rows.replace(/<td>/g, '<td style="padding:10px 8px;border-bottom:1px solid #ddd">')}</tbody>
+        <tbody>${rows}</tbody>
       </table>
       <div style="display:flex;justify-content:space-between;margin-top:16px;padding-top:12px;border-top:2px solid #111;font-weight:700;font-size:18px"><span>សរុប</span><span>$${Number(order.total_amount).toLocaleString()}</span></div>
       <div style="margin-top:32px;text-align:center;font-size:12px;color:#666">សូមអរគុណចំពោះការទុកចិត្ត!</div>
     </div>`;
   };
 
+  const ensureReceiptFonts = async () => {
+    const id = "receipt-fonts";
+    if (!document.getElementById(id)) {
+      const link = document.createElement("link");
+      link.id = id;
+      link.rel = "stylesheet";
+      link.href = "https://fonts.googleapis.com/css2?family=Battambang:wght@400;700&family=Bokor&display=swap";
+      document.head.appendChild(link);
+    }
+    try {
+      // @ts-ignore
+      if (document.fonts?.load) {
+        await Promise.all([
+          (document as any).fonts.load("16px Battambang"),
+          (document as any).fonts.load("16px Bokor"),
+        ]);
+        await (document as any).fonts.ready;
+      }
+    } catch { /* ignore */ }
+  };
+
   const handleDownloadPDF = async (order: Order) => {
+    await ensureReceiptFonts();
     const container = document.createElement("div");
     container.style.position = "fixed";
     container.style.left = "-10000px";
     container.style.top = "0";
-    container.innerHTML = buildReceiptHTML(order, false);
+    container.innerHTML = buildReceiptHTML(order);
     document.body.appendChild(container);
     try {
       const node = container.firstElementChild as HTMLElement;
-      const canvas = await html2canvas(node, { scale: 2, backgroundColor: "#ffffff" });
+      const canvas = await html2canvas(node, { scale: 2, backgroundColor: "#ffffff", useCORS: true });
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF({ unit: "pt", format: "a4" });
       const pageWidth = pdf.internal.pageSize.getWidth();
@@ -186,6 +208,7 @@ const Orders = () => {
       document.body.removeChild(container);
     }
   };
+
 
   return (
     <div className="min-h-screen bg-background">
